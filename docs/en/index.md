@@ -20,6 +20,24 @@ Always pin to a commit hash when installing a package directly from GitHub. Doin
 
 The following setup is required by MkDocs PO I18n.
 
+### Documentation directory structure
+
+MkDocs PO I18n expects the Markdown documentation to be maintained in a `/docs/language-code/` subdirectory, where `language-code` is the primary documentation langauge code. The primary langauge for this documentation is English, so this Markdown content is in `/docs/en/`.
+
+### PO file, POT file, and locales directory structure
+
+The `locales/` directory is expected to be in the `/docs/` directory.
+
+The POT files should reside in the `/docs/locales/templates/` directory.
+
+The PO files for each language should reside in a `/docs/locales/language-code/LC_MESSAGES/` directory. The demo translation language for this documentation is French. The French PO files are in `/docs/locales/fr/LC_MESSAGES/`.
+
+/// warning | Create new language code directories in `locales` before attempting to create PO files!
+
+To avoid unnecessary incorrect directories being created if an invalid language code is provided in error, the method MkDocs PO I18n uses to verify if the provided language code is an existing language checks for the existence of the language code directory in the `/docs/locales/` directory. If the language code directory doesn't exist, the tool will fail to run with an error. Therefore, you must create the desired language code directories manually before running the translation tools.
+
+///
+
 ### MkDocs configuration files
 
 This tool is designed to work with a specific MkDocs configuration setup.
@@ -60,24 +78,6 @@ The `config.yml` for this repo would minimally require the following, as the Mat
 theme:
   name: material
 ```
-
-### Documentation directory structure
-
-MkDocs PO I18n expects the Markdown documentation to be maintained in a `/docs/language-code/` subdirectory, where `language-code` is the primary documentation langauge code. The primary langauge for this documentation is English, so this Markdown content is in `/docs/en/`.
-
-### PO file, POT file, and locales directory structure
-
-The `locales/` directory is expected to be in the `/docs/` directory.
-
-The POT files should reside in the `/docs/locales/templates/` directory.
-
-The PO files for each language should reside in a `/docs/locales/language-code/LC_MESSAGES/` directory. The demo translation language for this documentation is French. The French PO files are in `/docs/locales/fr/LC_MESSAGES/`.
-
-/// warning | Create new language code directories in `locales` before attempting to create PO files!
-
-To avoid unnecessary incorrect directories being created if an invalid language code is provided in error, the method MkDocs PO I18n uses to verify if the provided language code is an existing language checks for the existence of the language code directory in the `/docs/locales/` directory. If the language code directory doesn't exist, the tool will fail to run with an error. Therefore, you must create the desired language code directories manually before running the translation tools.
-
-///
 
 ## Recommended prerequisites
 
