@@ -1,12 +1,10 @@
 [build-system]
-requires = [
-    "setuptools==80.9.0",
-]
-build-backend = "setuptools.build_meta"
+requires = ["uv_build >= 0.7.19, <0.9.0"]
+build-backend = "uv_build"
 
 [project]
-dynamic = ["version"]
 name = "mkdocs-po-i18n"
+version = "1.0.0"
 description = "A translation tool for using PO file with MkDocs."
 readme = "README.md"
 requires-python = ">= 3.12"
@@ -51,9 +49,3 @@ build_md_translations = "mkdocs_po_i18n.build_md_translations:main"
 build_po_translations = "mkdocs_po_i18n.build_po_translations:main"
 build_pot_translations = "mkdocs_po_i18n.build_pot_translations:main"
 live_serve = "mkdocs_po_i18n.live_serve:main"
-
-[tool.setuptools]
-include-package-data = true
-
-[tool.setuptools.packages.find]
-where = ["src"]
