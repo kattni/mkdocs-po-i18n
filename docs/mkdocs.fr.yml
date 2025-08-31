@@ -1,0 +1,7 @@
+INHERIT: config.yml
+site_name: MkDocs PO I18n
+site_url: https://kattni.com
+docs_dir: fr
+
+theme:
+  language: fr

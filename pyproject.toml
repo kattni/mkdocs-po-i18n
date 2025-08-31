@@ -1,0 +1,52 @@
+[build-system]
+requires = [
+    "setuptools==80.9.0",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+dynamic = ["version"]
+name = "mkdocs-po-i18n"
+description = "A translation tool for using PO file with MkDocs."
+readme = "README.md"
+requires-python = ">= 3.12"
+license = "BSD-3-Clause"
+license-files = [
+    "LICENSE",
+]
+authors = [
+    {name="Kattni", email="kattni@kattni.com"},
+]
+maintainers = [
+    {name="Kattni", email="kattni@kattni.com"},
+]
+
+dependencies = [
+    "mistletoe==1.4.0",
+    "mkdocs==1.6.1",
+    "mkdocs-material==9.6.18",
+    "python-Levenshtein==0.27.1",
+    "translate-toolkit @ git+https://github.com/translate/translate@aa35159f03f53aa536381643dfafbc2a19a24784",
+]
+
+[dependency-groups]
+dev = [
+    "tox-uv == 1.28.0",
+]
+
+[project.urls]
+Homepage = "https://kattni.com/"
+Funding = "https://github.com/sponsors/kattni"
+Tracker = "https://github.com/kattni/mkdocs-po-i18n/issues"
+Source = "https://github.com/kattni/mkdocs-po-i18n/"
+
+[project.scripts]
+build_md_translations = "mkdocs_po_i18n.build_md_translations:main"
+build_po_translations = "mkdocs_po_i18n.build_po_translations:main"
+live_serve_en = "mkdocs_po_i18n.live_serve_en:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
