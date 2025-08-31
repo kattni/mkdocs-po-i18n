@@ -10,7 +10,8 @@ SOURCE_DIR = Path.cwd() / "docs" / "locales"
 
 def parse_args() -> Namespace:
     parser = ArgumentParser(
-        description="Generate PO files for specified languages from existing PO template (POT) files."
+        description="Generate PO files for specified languages from existing PO "
+        "template (POT) files."
     )
     parser.add_argument(
         "language_code",
@@ -22,7 +23,10 @@ def parse_args() -> Namespace:
     for language_code in args.language_code:
         if not (SOURCE_DIR / f"{language_code}").is_dir():
             raise RuntimeError(
-                f'Language code "{language_code}" does not match an existing translation'
+                f'Language code "{language_code}" does not match an existing '
+                f"translation. Verify that the language code you provided is valid. If "
+                f'it is a new translation, create a "/docs/locales/{language_code}" '
+                f"directory first."
             )
 
     return args

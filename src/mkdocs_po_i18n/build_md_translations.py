@@ -26,22 +26,27 @@ def parse_args() -> Namespace:
         "-e",
         "--build-with-errors",
         action="store_true",
-        help="Allow the documentation to build with errors. Defaults to the build failing on errors.",
+        help="Allow the documentation to build with errors. Defaults to the build "
+        "failing on errors.",
     )
     parser.add_argument(
         "-s",
         "--source-code",
         action="append",
-        help="Source code directory to include in the build. Accepts multiple directories separated by spaces.",
+        help="Source code directory to include in the build. Accepts multiple "
+        "directories separated by spaces.",
     )
     args = parser.parse_args()
+
     for language_code in args.language_code:
         if not (
             (SOURCE_DIR / "docs" / "locales" / f"{language_code}").is_dir()
             or language_code == "en"
         ):
             raise RuntimeError(
-                f'Language code "{language_code}" does not match an existing translation'
+                f'Language code "{language_code}" does not match an existing '
+                f"translation. Verify that the language code you provided is valid, "
+                f'and has a directory in "/docs/locales/" containing PO files.'
             )
 
     return args
@@ -106,7 +111,9 @@ def main():
         for language in args.language_code:
             print(f"Processing {language}")
 
-            # sc_directory = temp_md_directory / language / "shared"
+            if (temp_md_directory / "config.yml").exists():
+                (temp_md_directory / "config.yml").unlink(missing_ok=True)
+
             output_directory = temp_md_directory / language
 
             # Symlink language config to temp directory. docs_dir and INHERIT paths are

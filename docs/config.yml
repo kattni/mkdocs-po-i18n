@@ -1,3 +1,8 @@
+repo_url: https://github.com/kattni/mkdocs-po-i18n/
+
+not_in_nav: |
+  /index.md
+
 theme:
   name: material
   palette:
@@ -26,3 +31,14 @@ theme:
       toggle:
         icon: material/weather-night
         name: Switch to system preference
+
+markdown_extensions:
+  pymdownx.highlight: {}
+  pymdownx.superfences: {}
+  pymdownx.blocks.admonition: {}
+  toc:
+    permalink: true
+    title: On this page
+
+plugins:
+  search: {}

@@ -1,6 +1,6 @@
 INHERIT: config.yml
 site_name: MkDocs PO I18n
-site_url: https://kattni.com
+site_url: https://mkdocs-po-i18n.readthedocs.io/fr/latest/
 docs_dir: fr
 
 theme:

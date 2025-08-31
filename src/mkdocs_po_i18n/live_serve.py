@@ -11,8 +11,10 @@ def parse_args() -> Namespace:
     parser = ArgumentParser(description="Live-serve MkDocs documentation in English.")
     parser.add_argument(
         "language_code",
-        default="en",
-        help="The primary documentation language code, if not English. Defaults to 'en'.",
+        default=["en"],
+        nargs="*",
+        help="The primary documentation language code, if not English. Defaults"
+        " to 'en'.",
     )
     parser.add_argument(
         "watch_directory",
@@ -20,16 +22,27 @@ def parse_args() -> Namespace:
         help="Directory or directories to watch for changes to serve live updates.",
     )
     parser.add_argument(
+        "-e",
         "--build-with-errors",
         action="store_true",
-        help="Allow the documentation to build with errors. Defaults to the build failing on errors.",
+        help="Allow the documentation to build with errors. Defaults to the build "
+        "failing on errors.",
     )
     parser.add_argument(
+        "-s",
         "--source-code",
         action="append",
         help="Source code directory to include in the build.",
     )
     args = parser.parse_args()
+    for language_code in args.language_code:
+        if not (SOURCE_DIR / "docs" / f"{language_code}").is_dir():
+            raise RuntimeError(
+                f'Language code "{language_code}" does not match an existing '
+                f"translation. Verify that the language code you provided is valid. If "
+                f'it is a new translation, create a "/docs/locales/{language_code}" '
+                f"directory first."
+            )
 
     return args
 

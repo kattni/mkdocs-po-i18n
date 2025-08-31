@@ -3,4 +3,4 @@ flavor = "mkdocs"
 include = ["**/*.md"]
 respect-gitignore = true
 
-disable = ["MD013"]
+disable = ["MD013", "MD014"]

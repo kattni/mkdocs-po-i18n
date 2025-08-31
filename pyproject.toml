@@ -25,6 +25,8 @@ dependencies = [
     "mistletoe==1.4.0",
     "mkdocs==1.6.1",
     "mkdocs-material==9.6.18",
+    "Pygments==2.19.2",
+    "pymdown-extensions==10.16.1",
     "python-Levenshtein==0.27.1",
     "translate-toolkit @ git+https://github.com/translate/translate@aa35159f03f53aa536381643dfafbc2a19a24784",
 ]
@@ -47,7 +49,8 @@ Source = "https://github.com/kattni/mkdocs-po-i18n/"
 [project.scripts]
 build_md_translations = "mkdocs_po_i18n.build_md_translations:main"
 build_po_translations = "mkdocs_po_i18n.build_po_translations:main"
-live_serve_en = "mkdocs_po_i18n.live_serve_en:main"
+build_pot_translations = "mkdocs_po_i18n.build_pot_translations:main"
+live_serve = "mkdocs_po_i18n.live_serve:main"
 
 [tool.setuptools]
 include-package-data = true
