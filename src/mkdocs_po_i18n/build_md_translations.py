@@ -94,6 +94,9 @@ def main():
             (temp_md_directory / f"mkdocs.{language}.yml").symlink_to(
                 SOURCE_DIR / "docs" / f"mkdocs.{language}.yml"
             )
+            (temp_md_directory / "config.yml").symlink_to(
+                SOURCE_DIR / "docs" / "config.yml"
+            )
 
             if language != "en":
                 # sc_directory.mkdir(parents=True, exist_ok=True)
