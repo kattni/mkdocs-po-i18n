@@ -10,7 +10,11 @@ MkDocs PO I18n is currently installable directly from GitHub. The following can 
 "mkdocs-po-i18n @ git+https://github.com/kattni/mkdocs-po-i18n#desiredhash"
 ```
 
-Note: Always pin to a commit hash when installing a package directly from GitHub. Doing so serves the same purpose as pinning a package to a specific release; in the event that the API changes or a bug is introduced, you won't be caught by surprise when your workflow breaks.
+/// caution | Always pin to a commit hash!
+
+Always pin to a commit hash when installing a package directly from GitHub. Doing so serves the same purpose as pinning a package to a specific release; in the event that the API changes or a bug is introduced, you won't be caught by surprise when your workflow breaks.
+
+///
 
 ## Required prerequisites
 
