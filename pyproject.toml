@@ -34,6 +34,10 @@ dev = [
     "tox-uv == 1.28.0",
 ]
 
+pre-commit = [
+    "pre-commit == 4.3.0",
+]
+
 [project.urls]
 Homepage = "https://kattni.com/"
 Funding = "https://github.com/sponsors/kattni"

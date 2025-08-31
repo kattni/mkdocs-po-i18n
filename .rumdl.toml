@@ -1,0 +1,6 @@
+[global]
+flavor = "mkdocs"
+include = ["**/*.md"]
+respect-gitignore = true
+
+disable = ["MD013"]

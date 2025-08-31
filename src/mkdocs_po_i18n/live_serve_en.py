@@ -8,10 +8,27 @@ SOURCE_DIR = Path.cwd()
 
 
 def parse_args() -> Namespace:
-    parser = ArgumentParser()
-    parser.add_argument("watch_directory", nargs="*")
-    parser.add_argument("--build-with-errors", action="store_true")
-    parser.add_argument("--source-code", action="append")
+    parser = ArgumentParser(description="Live-serve MkDocs documentation in English.")
+    parser.add_argument(
+        "language_code",
+        default="en",
+        help="The primary documentation language code, if not English. Defaults to 'en'.",
+    )
+    parser.add_argument(
+        "watch_directory",
+        nargs="*",
+        help="Directory or directories to watch for changes to serve live updates.",
+    )
+    parser.add_argument(
+        "--build-with-errors",
+        action="store_true",
+        help="Allow the documentation to build with errors. Defaults to the build failing on errors.",
+    )
+    parser.add_argument(
+        "--source-code",
+        action="append",
+        help="Source code directory to include in the build.",
+    )
     args = parser.parse_args()
 
     return args
@@ -61,17 +78,20 @@ def main():
                     SOURCE_DIR / directory, target_is_directory=True
                 )
 
-        (temp_md_directory / "mkdocs.en.yml").symlink_to(
-            SOURCE_DIR / "docs" / "mkdocs.en.yml"
-        )
-        (temp_md_directory / "config.yml").symlink_to(
-            SOURCE_DIR / "docs" / "config.yml"
-        )
-        (temp_md_directory / "en").symlink_to(
-            SOURCE_DIR / "docs" / "en", target_is_directory=True
-        )
+        for language_code in args.language_code:
+            (temp_md_directory / f"mkdocs.{language_code}.yml").symlink_to(
+                SOURCE_DIR / "docs" / f"mkdocs.{language_code}.yml"
+            )
+            (temp_md_directory / "config.yml").symlink_to(
+                SOURCE_DIR / "docs" / "config.yml"
+            )
+            (temp_md_directory / f"{language_code}").symlink_to(
+                SOURCE_DIR / "docs" / f"{language_code}", target_is_directory=True
+            )
 
-        serve_docs(config_location=(temp_md_directory / "mkdocs.en.yml"))
+            serve_docs(
+                config_location=(temp_md_directory / f"mkdocs.{language_code}.yml")
+            )
 
 
 if __name__ == "__main__":

@@ -8,11 +8,32 @@ SOURCE_DIR = Path.cwd()
 
 
 def parse_args() -> Namespace:
-    parser = ArgumentParser()
-    parser.add_argument("language_code", nargs="*")
-    parser.add_argument("--output", default=SOURCE_DIR / "_build" / "html")
-    parser.add_argument("--build-with-errors", action="store_true")
-    parser.add_argument("--source-code", action="append")
+    parser = ArgumentParser(
+        description="Build MkDocs documentation in a specified language."
+    )
+    parser.add_argument(
+        "language_code",
+        nargs="*",
+        help="The language code for each translation language.",
+    )
+    parser.add_argument(
+        "-o",
+        "--output",
+        default=SOURCE_DIR / "_build" / "html",
+        help="The HTML build output directory. Defaults to '/_build/html'.",
+    )
+    parser.add_argument(
+        "-e",
+        "--build-with-errors",
+        action="store_true",
+        help="Allow the documentation to build with errors. Defaults to the build failing on errors.",
+    )
+    parser.add_argument(
+        "-s",
+        "--source-code",
+        action="append",
+        help="Source code directory to include in the build. Accepts multiple directories separated by spaces.",
+    )
     args = parser.parse_args()
     for language_code in args.language_code:
         if not (

@@ -9,8 +9,14 @@ SOURCE_DIR = Path.cwd() / "docs" / "locales"
 
 
 def parse_args() -> Namespace:
-    parser = ArgumentParser()
-    parser.add_argument("language_code", nargs="*")
+    parser = ArgumentParser(
+        description="Generate PO files for specified languages from existing PO template (POT) files."
+    )
+    parser.add_argument(
+        "language_code",
+        nargs="*",
+        help="The language code for each translation language.",
+    )
     args = parser.parse_args()
 
     for language_code in args.language_code:

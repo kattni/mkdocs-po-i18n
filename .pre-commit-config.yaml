@@ -1,0 +1,25 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-toml
+      - id: check-yaml
+      - id: check-case-conflict
+      - id: end-of-file-fixer
+        # PO files may not have a trailing EOL, as they are tool generated
+        exclude: "locales"
+      - id: trailing-whitespace
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.12.10
+    hooks:
+      - id: ruff-check
+        args: [ --fix ]
+      - id: ruff-format
+  - repo: https://github.com/rvben/rumdl-pre-commit
+    rev: v0.0.132
+    hooks:
+      - id: rumdl
+        # To only check (default):
+        # args: []
+        # To automatically fix issues:
+        # args: [--fix]
