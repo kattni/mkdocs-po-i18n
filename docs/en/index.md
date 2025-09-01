@@ -98,8 +98,8 @@ templates_dir = {tox_root}{/}docs{/}locales{/}templates
 [testenv:docs{,-translate,-all,-live,-en,-fr}]
 base_python = py313
 skip_install = true
-deps =
-    [dev]
+dependency_groups =
+    dev
 commands:
     !all-!translate-!live-!en-!fr : build_md_translations {posargs} en
     translate : build_pot_translations
@@ -235,3 +235,18 @@ To build the site locally with translated content, you can run this command with
 ```console
 $ build_md_translations fr
 ```
+
+## Available options
+
+* `build_po_translations`:
+    * `language_code`: You must supply at least one language code to build that language. You can optionally supply multiple language codes, separated by spaces, to build in more than one language at the same time.
+* `build_md_translations`:
+    * `language_code`: You must supply at least one language code to build that language. You can optionally supply multiple language codes, separated by spaces, to build in more than one language at the same time.
+    * `--output`/`-o`: Allows you to specify the build output directory. Defaults to `/_build/html/` in your project directory.
+    * `--build-with-errors`/`-e`: You can optionally supply this flag to allow building with errors. The build defaults to building with `--strict`, which will cause it to fail on any warnings or errors.
+    * `--source-code`/`-s`: Allows you to provide a source code directory to include in the build. Necessary if you are using `mkdocstring` to include class documentation. This flag can be provided more than once to include more than one source code directory.
+* `live_serve`:
+    * `language_code`: If your primary documentation language is English, you do not need to provide a language code. If the primary language is something else, you need to provide the language code.
+    * `watch_directory`: Include a directory or multiple directories to watch for changes; adding directory names here will mean making changes in those directories while live-serving the site will trigger an automatic rebuild with those changes. You can supply multiple directories, separated by spaces.
+    * `--build-with-errors`/`-e`: You can optionally supply this flag to allow building with errors. The build defaults to building with `--strict`, which will cause it to fail on any warnings or errors.
+    * `--source-code`/`-s`: Allows you to provide a source code directory to include in the build. Necessary if you are using `mkdocstring` to include class documentation. This flag can be provided more than once to include more than one source code directory.
