@@ -4,7 +4,7 @@ from pathlib import Path
 SOURCE_DIR = Path.cwd()
 
 
-def generate_translated_pot_files(input_dir: Path, output_dir: Path) -> None:
+def generate_pot_files(input_dir: Path, output_dir: Path) -> None:
     subprocess.run(
         [
             "md2po",
@@ -31,7 +31,7 @@ def main():
     output_directory = SOURCE_DIR / "docs" / "locales" / "templates"
 
     output_directory.mkdir(parents=True, exist_ok=True)
-    generate_translated_pot_files(
+    generate_pot_files(
         input_dir=Path("docs") / "en",
         output_dir=output_directory,
     )
