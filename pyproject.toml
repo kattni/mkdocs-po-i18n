@@ -26,7 +26,7 @@ dependencies = [
     "Pygments==2.19.2",
     "pymdown-extensions==10.16.1",
     "python-Levenshtein==0.27.1",
-    "translate-toolkit @ git+https://github.com/translate/translate@aa35159f03f53aa536381643dfafbc2a19a24784",
+    "translate-toolkit==3.16.0",
 ]
 
 [dependency-groups]
